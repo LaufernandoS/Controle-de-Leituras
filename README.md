@@ -38,7 +38,48 @@ Como o projeto ainda está em desenvolvimento, a forma de utilização pode muda
 3. Executar o servidor da aplicação
 4. Acessar o sistema pelo navegador
 
-Instruções mais detalhadas de instalação e execução serão adicionadas conforme o projeto evoluir.
+## Como rodar
+
+### 1. Criar e ativar o ambiente virtual
+
+```bash
+python -m venv venv
+
+# Linux/Mac
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
+```
+
+### 2. Instalar dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Rodar o servidor
+
+```bash
+# Na raiz do projeto (controle-leituras/)
+uvicorn app.main:app --reload
+```
+
+Ou simplesmente:
+
+```bash
+bash run.sh
+```
+
+### 4. Acessar
+
+Abra o navegador em: [http://localhost:8000](http://localhost:8000)
+
+## Funcionalidades
+
+- [x] 
+
+Instruções mais detalhadas serão adicionadas conforme o projeto evoluir.
 
 ---
 
