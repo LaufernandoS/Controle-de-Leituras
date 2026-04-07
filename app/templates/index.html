@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Leituras</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+
+<header>
+    <h1>Controle de Leituras</h1>
+</header>
+
+<main>
+    <!-- FORMULÁRIO -->
+    <section class="box">
+        <h2>Nova Leitura</h2>
+
+        <form 
+            hx-post="/books" 
+            hx-target="#book-list" 
+            hx-swap="beforeend"
+        >
+            <input type="text" name="title" placeholder="Título do livro" required>
+            <input type="text" name="author" placeholder="Autor" required>
+            <input type="number" name="total_pages" placeholder="Total de páginas" required>
+            <input type="number" name="pages_read" placeholder="Páginas lidas" required>
+            <input type="date" name="start_date" required>
+
+            <button type="submit">Adicionar</button>
+        </form>
+    </section>
+
+    <!-- LISTA -->
+    <section class="box">
+        <h2>Minhas Leituras</h2>
+
+        <div 
+            id="book-list"
+            hx-get="/books"
+            hx-trigger="load"
+        >
+            <!-- HTMX vai preencher -->
+        </div>
+    </section>
+</main>
+
+</body>
+</html>
