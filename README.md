@@ -91,6 +91,11 @@ app/
 ├── templates/     # Jinja2 + partials HTMX
 └── static/        # CSS
 
+## Uso de Inteligência Artificial
+
+Foi usada Inteligência Artificial para acelerar o desenvolvimento do front-end, tirar dúvidas quanto
+à arquitetura do projeto, e gerar a base de dados padrão de inicialização na seed em main.py.
+
 ## Modelo de dados
 Author (1) ──< Book (N)
 - Um autor pode ter vários livros
