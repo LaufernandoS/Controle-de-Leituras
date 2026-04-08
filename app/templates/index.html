@@ -2,49 +2,62 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Leituras</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 <body>
-
 <header>
-    <h1>Controle de Leituras</h1>
+    <h1>📚 Controle de Leituras</h1>
 </header>
-
 <main>
-    <!-- FORMULÁRIO -->
+
+    <!-- FORMULÁRIO NOVO LIVRO -->
     <section class="box">
         <h2>Nova Leitura</h2>
-
-        <form 
-            hx-post="/books" 
-            hx-target="#book-list" 
-            hx-swap="beforeend"
+        <form
+            hx-post="/books"
+            hx-target="#book-list"
+            hx-swap="afterbegin"
+            hx-on::after-request="this.reset()"
         >
-            <input type="text" name="title" placeholder="Título do livro" required>
-            <input type="text" name="author" placeholder="Autor" required>
-            <input type="number" name="total_pages" placeholder="Total de páginas" required>
-            <input type="number" name="pages_read" placeholder="Páginas lidas" required>
-            <input type="date" name="start_date" required>
-
+            <input type="text"   name="title"       placeholder="Título do livro"  required>
+            <input type="text"   name="author"       placeholder="Autor"            required>
+            <input type="number" name="total_pages"  placeholder="Total de páginas" required min="1">
+            <input type="number" name="pages_read"   placeholder="Páginas lidas"    required min="0" value="0">
+            <input type="date"   name="start_date">
+            <select name="status">
+                <option value="quero_ler">Quero ler</option>
+                <option value="lendo">Lendo</option>
+                <option value="concluido">Concluído</option>
+            </select>
             <button type="submit">Adicionar</button>
         </form>
     </section>
 
-    <!-- LISTA -->
+    <!-- BUSCA -->
     <section class="box">
         <h2>Minhas Leituras</h2>
+        <input
+            type="search"
+            name="query"
+            placeholder="Buscar por título ou autor…"
+            hx-get="/books"
+            hx-trigger="input changed delay:300ms, search"
+            hx-target="#book-list"
+            hx-swap="innerHTML"
+        >
 
-        <div 
+        <!-- LISTA preenchida pelo HTMX -->
+        <div
             id="book-list"
             hx-get="/books"
             hx-trigger="load"
-        >
-            <!-- HTMX vai preencher -->
-        </div>
+            hx-swap="innerHTML"
+        ></div>
     </section>
-</main>
 
+</main>
 </body>
 </html>

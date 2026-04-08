@@ -1,0 +1,43 @@
+<div class="book" id="book-{{ book.id }}">
+    <div class="book-header">
+        <div>
+            <strong class="book-title">{{ book.title }}</strong>
+            <span class="book-author">{{ book.author.name }}</span>
+        </div>
+        <span class="badge badge--{{ book.status }}">
+            {% if book.status == "concluido" %}Concluído
+            {% elif book.status == "lendo" %}Lendo
+            {% else %}Quero ler
+            {% endif %}
+        </span>
+    </div>
+
+    <div class="book-meta">
+        <span>{{ book.pages_read }} / {{ book.total_pages }} páginas</span>
+        {% if book.start_date %}
+            <span>Iniciado em {{ book.start_date.strftime('%d/%m/%Y') }}</span>
+        {% endif %}
+    </div>
+
+    <!-- Barra de progresso -->
+    <div class="progress-bar">
+        <div class="progress" style="width: {{ book.progress }}%"></div>
+    </div>
+    <small class="progress-label">{{ book.progress }}%</small>
+
+    <!-- Ações -->
+    <div class="book-actions">
+        <button
+            hx-get="/books/{{ book.id }}/edit"
+            hx-target="#book-{{ book.id }}"
+            hx-swap="outerHTML"
+        >Editar</button>
+
+        <button class="btn-danger"
+            hx-delete="/books/{{ book.id }}"
+            hx-target="#book-{{ book.id }}"
+            hx-swap="outerHTML"
+            hx-confirm="Remover '{{ book.title }}'?"
+        >Remover</button>
+    </div>
+</div>
