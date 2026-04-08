@@ -6,6 +6,13 @@ body {
     background-color: #2b1f1a;
     color: #f5e6dc;
     margin: 0;
+
+    /* Imagem de fundo */
+    background-image: url("https://sites.usp.br/pmca/wp-content/uploads/sites/1185/2024/02/20230526_ILANABAR-ESTUDIO-GARAGEM_4372-604x270.jpg");
+    background-repeat: repeat;
+    background-size: 400px auto;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
 }
 
 /* ── Header ────────────────────────────────────────────────────────────────── */
