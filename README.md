@@ -6,11 +6,12 @@ O **Controle de Leituras** tem como proposta ser um web app simples para organiz
 
 O sistema possui funcionalidades básicas de gerenciamento, incluindo:
 
-* Cadastro de livros
-* Associação de livros a autores
-* Atualização de informações de leitura
-* Remoção de registros
-* Visualização e busca de livros cadastrados
+- [x] Cadastro de livros com associação a autores
+- [x] Barra de progresso calculada automaticamente
+- [x] Status: Quero ler / Lendo / Concluído
+- [x] Edição inline sem recarregar a página
+- [x] Busca por título ou autor em tempo real
+- [x] Remoção com confirmação
 
 O projeto está **em fase inicial de desenvolvimento**, portanto as funcionalidades e a estrutura do sistema ainda podem sofrer alterações.
 
@@ -22,10 +23,10 @@ Muitas pessoas mantêm listas informais de livros em anotações, planilhas ou a
 
 Além disso, o projeto também serve como **exercício prático de desenvolvimento web**, explorando tecnologias como:
 
-* HTML, CSS e JavaScript
-* FastAPI
-* Banco de dados SQL
-* HTMX para operações CRUD
+- FastAPI + SQLAlchemy + SQLite
+- Jinja2 (templates)
+- HTMX (operações CRUD sem reload)
+- HTML + CSS puro
 
 ---
 
@@ -74,14 +75,26 @@ bash run.sh
 ### 4. Acessar
 
 Abra o navegador em: [http://localhost:8000](http://localhost:8000)
-
-## Funcionalidades
-
-- [x] 
-
 Instruções mais detalhadas serão adicionadas conforme o projeto evoluir.
 
 ---
+
+## Estrutura
+
+app/
+├── main.py        # entrada FastAPI, seed de dados
+├── database.py    # conexão SQLite
+├── models.py      # Author e Book (relação 1:N)
+├── crud.py        # operações de banco isoladas
+├── routes/
+│   └── books.py   # endpoints CRUD
+├── templates/     # Jinja2 + partials HTMX
+└── static/        # CSS
+
+## Modelo de dados
+Author (1) ──< Book (N)
+- Um autor pode ter vários livros
+- Um livro pertence a exatamente um autor
 
 ## Onde os usuários podem obter ajuda
 

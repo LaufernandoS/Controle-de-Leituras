@@ -1,0 +1,30 @@
+<div class="book book--editing" id="book-{{ book.id }}">
+    <form
+        hx-put="/books/{{ book.id }}"
+        hx-target="#book-{{ book.id }}"
+        hx-swap="outerHTML"
+    >
+        <input type="text"   name="title"      value="{{ book.title }}"      placeholder="Título" required>
+        <input type="text"   name="author"     value="{{ book.author.name }}" placeholder="Autor" required>
+        <input type="number" name="total_pages" value="{{ book.total_pages }}" placeholder="Total de páginas" required min="1">
+        <input type="number" name="pages_read"  value="{{ book.pages_read }}"  placeholder="Páginas lidas" required min="0">
+        <input type="date"   name="start_date"
+               value="{{ book.start_date.isoformat() if book.start_date else '' }}">
+
+        <select name="status">
+            <option value="quero_ler"  {% if book.status == 'quero_ler'  %}selected{% endif %}>Quero ler</option>
+            <option value="lendo"      {% if book.status == 'lendo'      %}selected{% endif %}>Lendo</option>
+            <option value="concluido"  {% if book.status == 'concluido'  %}selected{% endif %}>Concluído</option>
+        </select>
+
+        <div class="book-actions">
+            <button type="submit">Salvar</button>
+            <button type="button"
+                hx-get="/books"
+                hx-target="#book-list"
+                hx-swap="innerHTML"
+                class="btn-cancel"
+            >Cancelar</button>
+        </div>
+    </form>
+</div>

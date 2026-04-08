@@ -1,0 +1,5 @@
+{% for book in books %}
+    {% include "partials/book_card.html" %}
+{% else %}
+    <p class="empty">Nenhuma leitura encontrada.</p>
+{% endfor %}

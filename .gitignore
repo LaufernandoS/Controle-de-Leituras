@@ -1,0 +1,26 @@
+# Ambiente virtual
+venv/
+.venv/
+
+# Banco de dados (gerado automaticamente pelo seed)
+*.db
+*.sqlite3
+
+# Cache do Python
+.app/__pycache__/
+*.py[cod]
+*.pyo
+
+# Variáveis de ambiente (se vier a usar)
+.env
+.env.*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
